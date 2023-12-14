@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "create.h": "c",
+        "seats.h": "c",
+        "entities.h": "c",
+        "theater.h": "c"
+    }
+}
