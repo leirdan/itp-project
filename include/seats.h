@@ -7,6 +7,6 @@
 /// @param l Número de fileiras.
 /// @param c Número de colunas.
 /// @return Endereço base da matriz de assentos.
-Assento **inicializarMatriz(int l, int c);
+Seat **initiliazeMatrix(int l, int c);
 
 #endif

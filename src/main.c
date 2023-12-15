@@ -9,7 +9,7 @@ int main(int argc, char *argv[]) {
     printf("Por favor, informe a quantidade de fileiras e número de cadeiras por fileira de seu teatro: ");
     int f, n;
     scanf("%d %d", &f, &n);
-    Teatro t = criarTeatro(f, n);
+    Theater t = createTheater(f, n);
 
     int operations;
 

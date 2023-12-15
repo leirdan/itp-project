@@ -2,16 +2,16 @@
 #define entities_h
 
 typedef struct {
-    int reservado;
-    int fileira;
-    int numero;
-    char *nome;
-} Assento;
+    int reserved;
+    int row;
+    int number;
+    char *name;
+} Seat;
 
 typedef struct {
-    Assento **assento;
-    int linha;
-    int coluna;
-} Teatro;
+    Seat **seats;
+    int qtdRows;
+    int qtdColumns;
+} Theater;
 
 #endif

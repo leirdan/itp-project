@@ -3,15 +3,15 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-Teatro criarTeatro(int l, int c) {
-    Teatro t;
-    t.assento = NULL;
-    t.assento = inicializarMatriz(l, c);
-    while (t.assento == NULL) {
+Theater createTheater(int l, int c) {
+    Theater t;
+    t.seats = NULL;
+    t.seats = initiliazeMatrix(l, c);
+    while (t.seats == NULL) {
         printf("Forneça uma entrada válida: ");
         scanf("%d %d", &l, &c);
-        t.assento = inicializarMatriz(l, c);
+        t.seats = initiliazeMatrix(l, c);
     }
-    t.linha = l; t.coluna = c;
+    t.qtdRows = l; t.qtdColumns = c;
     return t;
 }
