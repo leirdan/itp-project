@@ -2,6 +2,7 @@
 #include "../../include/seats.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 
 Theater createTheater(int l, int c) {
     Theater t;
@@ -44,10 +45,10 @@ void displayTheater(Theater t) {
 }
 
 int createReservation(Theater t, int r, int c, char *n) {
-    Seat s = t.seats[r][c];
-    if (s.reserved == 0) {
-        s.name = n;
-        s.reserved = 1;
+    Seat *s = &(t.seats[r-1][c-1]);
+    if (s->reserved == 0) {
+        s->name = n;
+        s->reserved = 1;
         return 1;
     }
     return 0;

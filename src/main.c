@@ -1,8 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
+#include <string.h>
 #include "../include/seats.h"
 #include "../include/theater.h"
+
+void startup_2(Theater t);
 
 int main(int argc, char *argv[]) { 
     int f, n, op = 1, c = 0;
@@ -30,30 +33,44 @@ int main(int argc, char *argv[]) {
     for (int i = 0; i < c; i++) {
         op = operations[i];
         switch(op) {
-            case 0: // Criar Teatro
+            case 0: // Sair do Programa
+                printf("Volte sempre!\n");
                 break;
             case 1: // Reservar Assento
-                char *s;
-                int r, c;
-                printf("Você escolheu a opção 'Reservar Assento'. Digite seu nome, o número da fileira e o número da cadeira.");
-                fgets(s, 99, stdin);
-                scanf("%d %d", &r, &c);
-                createReservation(t, r, c, s);
+                startup_2(t);
                 break;
             case 2: // Exibir Teatro
+                printf("Esse é o estado atual do teatro: \n");
                 displayTheater(t);
                 break;
             default:
                 break;
         }
     }
-    
+
     free(t.seats);
     free(operations);
 
     return 0;
 }
 
-void startup(int op) {
+void startup_2(Theater t) {
+    char *s = malloc(sizeof(char) * 100);
+    int r, c, result, opc = 1;
 
+    while(opc == 1) {
+        printf("Você escolheu a opção 'Reservar Assento'. Digite seu primeiro nome, o número da fileira e o número da cadeira: ");
+        scanf("%s", s);
+        getchar();
+        scanf("%d %d", &r, &c);
+        result = createReservation(t, r, c, s);
+        if (result == 1) {
+            // printf("Reserva feita com sucesso no assento %c%d no nome de %s \n").
+            opc = 0;
+        }
+        else {
+            printf("O assento não está disponível. Deseja cadastrar novamente? \n");
+            scanf("%d", opc);
+        }
+    }
 }
