@@ -1,5 +1,6 @@
 #include "../../include/entities.h"
 #include "../../include/seats.h"
+#include "../../include/theater.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -46,9 +47,16 @@ void displayTheater(Theater t) {
 
 int createReservation(Theater t, int r, int c, char *n) {
     Seat *s = &(t.seats[r-1][c-1]);
-    if (s->reserved == 0) {
+    if (isSeatFree(t, r-1, c-1) == 1){
         s->name = n;
         s->reserved = 1;
+        return 1;
+    }
+    return 0;
+}
+
+int isSeatFree(Theater t, int r, int c) {
+    if (t.seats[r][c].reserved == 0) {
         return 1;
     }
     return 0;

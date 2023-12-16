@@ -26,4 +26,11 @@ int createReservation(Theater t, int r, int c, char *n);
 /// @param t O teatro.
 void displayTheater(Theater t);
 
+/// @brief Verifica se um assento está reservado no teatro.
+/// @param t O teatro.
+/// @param r Índice da fileira.
+/// @param c Índice da coluna.
+/// @return 1 se o assento está disponível; senão, retorna 0. 
+int isSeatFree(Theater t, int r, int c);
+
 #endif
