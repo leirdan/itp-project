@@ -14,4 +14,16 @@ Theater createTheater(int l, int c);
 /// @return Dados do teatro.
 Theater loadState(char *file);
 
+/// @brief Cria uma única reserva no teatro. 
+/// @param t Teatro a ser reservado.
+/// @param r Fileira (linha) do assento.
+/// @param c Coluna do assento.
+/// @param n Nome da pessoa a reservar.
+/// @return 0 se o assento não está disponível; 1 se o assento está livre e foi reservado.
+int createReservation(Theater t, int r, int c, char *n);
+
+/// @brief Imprime os assentos do teatro no console.
+/// @param t O teatro.
+void displayTheater(Theater t);
+
 #endif
