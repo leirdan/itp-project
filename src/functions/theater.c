@@ -5,6 +5,7 @@
 
 Theater createTheater(int l, int c) {
     Theater t;
+    char row;
     t.seats = NULL;
     t.seats = initiliazeMatrix(l, c);
     while (t.seats == NULL) {
@@ -14,8 +15,9 @@ Theater createTheater(int l, int c) {
     }
     for (int i = 0; i < l; i++) {
         for (int k = 0; k < c; k++) {
+            row = 'A' + i;
             t.seats[i][k].reserved = 0;
-            t.seats[i][k].row = (char) (i + 49);
+            t.seats[i][k].row = row;
             t.seats[i][k].number = k + 1;
         }
     }
