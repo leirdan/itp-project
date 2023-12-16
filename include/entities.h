@@ -3,7 +3,7 @@
 
 typedef struct {
     int reserved;
-    int row;
+    char row;
     int number;
     char *name;
 } Seat;
