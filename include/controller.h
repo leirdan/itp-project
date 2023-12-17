@@ -9,6 +9,8 @@ void main_CancelateReservation(Theater t);
 
 void main_View(Theater t);
 
-void main_saveStateOnFile(Theater t);
+void main_SaveStateOnFile(Theater t);
+
+void main_SaveMultipleSeats(Theater t);
 
 #endif

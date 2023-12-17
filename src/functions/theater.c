@@ -66,7 +66,7 @@ void displayTheater(Theater t) {
 int createReservation(Theater t, int r, int c, char *n) {
     Seat *s = &(t.seats[r-1][c-1]);
     if (isSeatFree(t, r-1, c-1) == 1){
-        s->name = strdup(n);
+        s->name = n;
         s->reserved = 1;
         return 1;
     }
@@ -90,13 +90,12 @@ int cancelReservation(Theater t, int r, int c){
     return 0; 
 }
 
-int saveState(Theater t, char *argv){
+int saveState(Theater t, char *file){
     Seat s;
-    FILE *archive = fopen(argv, "w");
+    FILE *archive = fopen(file, "w");
     if (archive == NULL) {
         printf("Erro ao abrir o arquivo.\n");
-        return 1;
-    // {colocar diretório dps}
+        return 0;
     }
 
     fprintf(archive, "%d\n", t.qtdRows);
@@ -112,5 +111,36 @@ int saveState(Theater t, char *argv){
         }
     }
     fclose(archive);
-    return 0;
+    return 1;
+}
+
+int createMultipleReservation(Theater t, int r, int c, char *n, int x) {
+    int result, check = checkSeatsInline(t, r, c, x);
+
+    if (check == 0) {
+        // Não há disponibilidade de assentos.
+        return -1;
+    }
+    else {
+        // Há disponibilidade de assentos.
+        for (int i = 0; i < x; i++) {
+            result = createReservation(t, r, c, n);
+            if (result == 0) {
+                // Algo errado aconteceu.
+                return 0;
+            }
+            c++;
+        }
+        return 1;
+    }
+}
+
+int checkSeatsInline(Theater t, int r, int c, int x) {
+    for (int i = 0; i < x; i++) {
+        if(isSeatFree(t, r-1, c-1) == 0) {
+            return 0;
+        }
+        c++; // Avança para a próxima coluna.
+    }
+    return 1;
 }

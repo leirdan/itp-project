@@ -30,7 +30,7 @@ void displayTheater(Theater t);
 /// @param t O teatro.
 /// @param r Índice da fileira.
 /// @param c Índice da coluna.
-/// @return 1 se o assento estava reservado e 0 caso contrário
+/// @return 1 se o assento estava reservado e 0 caso contrário.
 int cancelReservation(Theater t, int r, int c);
 
 /// @brief Verifica se um assento está reservado no teatro.
@@ -40,6 +40,27 @@ int cancelReservation(Theater t, int r, int c);
 /// @return 1 se o assento está disponível; senão, retorna 0. 
 int isSeatFree(Theater t, int r, int c);
 
-int saveState(Theater t, char *argv);
+/// @brief Salva os dados do teatro atual em um arquivo.
+/// @param t O teatro.
+/// @param file Nome do arquivo.
+/// @return 1 se foi possível escrever os dados no arquivo; 0, caso contrário.
+int saveState(Theater t, char *file);
+
+/// @brief Cria n reservas no teatro em uma mesma fileira para um mesmo cliente.
+/// @param t O teatro.
+/// @param r Fileira da reserva.
+/// @param c Número da poltrona inicial da reserva.
+/// @param n Nome do cliente.
+/// @param x Quantidade de reservas a serem feitas.
+/// @return 1 se foi possível reservar os 'x' assentos; 0, caso contrário.
+int createMultipleReservation(Theater t, int r, int c, char *n, int x);
+
+/// @brief Verifica se 'x' poltronas da mesma fileira estão reservadas.
+/// @param t O teatro.
+/// @param r Fileira da poltrona.
+/// @param c Número da poltrona inicial.
+/// @param x Quantidade de poltronas a verificar.
+/// @return 1 se as 'x' poltronas estão livres; 0, caso contrário.
+int checkSeatsInline(Theater t, int r, int c, int x);
 
 #endif
