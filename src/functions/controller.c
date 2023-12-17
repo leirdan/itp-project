@@ -2,6 +2,7 @@
 #include "../../include/controller.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 int validateParams(Theater t, int r, int c) {
     if (r > t.qtdRows || c > t.qtdColumns) {
@@ -21,7 +22,6 @@ void main_SaveSpecificSeat(Theater t) {
     getchar();
     scanf("%d %d", &r, &c);
     // se os números forem maiores que o número de colunas/fileiras, tratar isso!
-    printf("%d %d \n", t.qtdRows, t.qtdColumns);
     validation = validateParams(t, r, c);
     while (validation == 0) {
         printf("Entradas inválidas. Insira uma fileira e um número de cadeira válidos: ");
@@ -33,7 +33,7 @@ void main_SaveSpecificSeat(Theater t) {
     s = &(t.seats[r-1][c-1]);
     result = createReservation(t, r, c, str);
     if (result == 1) {
-        printf("Reserva feita com sucesso no assento %c%d no nome de %s \n!", s->row, s->number, s->name);
+        printf("Reserva feita com sucesso no assento %c%d no nome de %s! \n", s->row, s->number, s->name);
     }
     else {
         printf("O assento não está disponível. Deseja cadastrar novamente? (s/n) ");
@@ -71,4 +71,26 @@ void main_CancelateReservation(Theater t) {
 void main_View(Theater t) {
     printf("Estado atual do teatro com assentos livres e ocupados:\n");
     displayTheater(t);
+}
+
+void main_saveStateOnFile(Theater t) {
+    char *str = malloc(sizeof(char) * 54);
+    int result;
+    char opc;
+
+    printf("Digite o nome do arquivo a salvar o teatro (até 50 caracteres): ");
+    scanf("%s", str);
+    strcat(str, ".txt ");
+    str[strlen(str) - 1] = '\0';
+    result = saveState(t, str);
+    free(str);
+    
+    if (result == 1) {
+        printf("Seus dados foram salvos com sucesso! \n");
+    }
+    else {
+        printf("Não foi possível abrir o arquivo. Tentar novamente? (s/n) ");
+        if(scanf("%c") == 's') { main_saveStateOnFile(t); } 
+        else { return; }
+    }
 }

@@ -38,11 +38,7 @@ int main(int argc, char *argv[]) {
                 printf("Volte sempre!\n");
                 break;
             case 1: // Salvar estado
-                printf("Insira o nome do arquivo\n");
-                char ponteiro[50];
-                scanf("%s", ponteiro);
-                saveState(t, ponteiro);
-                printf("Seu arquivo foi salvo com sucesso\n");
+                main_saveStateOnFile(t);
                 break;
             case 2: // Carregar estado
                 break;
