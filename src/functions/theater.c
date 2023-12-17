@@ -34,11 +34,29 @@ void displayTheater(Theater t) {
         for (int k = 0; k < t.qtdColumns; k++) {
             s = t.seats[i][k]; // Assento atual.
 
-            if (s.reserved == 0) {
-                printf("| ]%c%d[ |", s.row, s.number);
-            } 
+            if (s.number == 1) { 
+                if (s.reserved == 0) {
+                    printf("| ]%c%d[ ", s.row, s.number);
+                } 
+                else {
+                    printf("| [%c%d] ", s.row, s.number);
+                }
+            }
+            else if (s.number == t.qtdColumns) {
+                 if (s.reserved == 0) {
+                    printf("| ]%c%d[ | ", s.row, s.number);
+                } 
+                else {
+                    printf("| [%c%d] | ", s.row, s.number);
+                }
+            }
             else {
-                printf(" | [%c%d] |", s.row, s.number);
+                if (s.reserved == 0) {
+                    printf("| ]%c%d[ ", s.row, s.number);
+                } 
+                else {
+                    printf("| [%c%d] ", s.row, s.number);
+                }    
             }
         }
         printf("\n"); 
@@ -60,4 +78,14 @@ int isSeatFree(Theater t, int r, int c) {
         return 1;
     }
     return 0;
+}
+
+int cancelReservation(Theater t, int r, int c){
+    Seat *s = &(t.seats[r-1][c-1]);
+    if (isSeatFree(t, r-1, c-1) == 0){
+        s->name = "";
+        s->reserved = 0;
+        return 1;
+    }
+    return 0; 
 }

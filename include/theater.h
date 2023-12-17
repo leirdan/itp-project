@@ -26,6 +26,13 @@ int createReservation(Theater t, int r, int c, char *n);
 /// @param t O teatro.
 void displayTheater(Theater t);
 
+/// @brief Cancela a reserva do assento localizado na fileira 'r' e coluna 'c'
+/// @param t O teatro.
+/// @param r Índice da fileira.
+/// @param c Índice da coluna.
+/// @return 1 se o assento estava reservado e 0 caso contrário
+int cancelReservation(Theater t, int r, int c);
+
 /// @brief Verifica se um assento está reservado no teatro.
 /// @param t O teatro.
 /// @param r Índice da fileira.

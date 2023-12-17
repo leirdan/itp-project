@@ -3,24 +3,72 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void saveSpecificSeat(Theater t) { 
-    char *s = malloc(sizeof(char) * 100);
-    int r, c, result;
+int validateParams(Theater t, int r, int c) {
+    if (r > t.qtdRows || c > t.qtdColumns) {
+        return 0;
+    }
+    return 1;
+}
+
+void main_SaveSpecificSeat(Theater t) { 
+    char *str = malloc(sizeof(char) * 100);
+    int r, c, result, validation;
+    Seat s;
     char opc;
 
-    printf("Você escolheu a opção 'Reservar Assento'. Digite seu primeiro nome, o número da fileira e o número da cadeira: ");
-    scanf("%s", s);
+    printf("Você escolheu a opção 'Reservar Assento'.\nDigite seu primeiro nome, o número da fileira e o número da cadeira: ");
+    scanf("%s", str);
     getchar();
     scanf("%d %d", &r, &c);
-    result = createReservation(t, r, c, s);
+    // se os números forem maiores que o número de colunas/fileiras, tratar isso!
+    printf("%d %d \n", t.qtdRows, t.qtdColumns);
+    validation = validateParams(t, r, c);
+    while (validation == 0) {
+        printf("Entradas inválidas. Insira uma fileira e um número de cadeira válidos: ");
+        getchar();
+        scanf("%d %d", &r, &c);
+        validation = validateParams(t, r, c);
+    }
+
+    s = t.seats[r-1][c-1];
+    result = createReservation(t, r, c, str);
     if (result == 1) {
-        printf("Reserva feita com sucesso no assento %c%d no nome de %s \n",  t.seats[r-1][c-1].row,  t.seats[r-1][c-1].number, t.seats[r-1][c-1].name);
+        printf("Reserva feita com sucesso no assento %c%d no nome de %s \n!", s.row, s.number,s.name);
     }
     else {
-        printf("O assento não está disponível. Deseja cadastrar novamente? (s/n) \n");
+        printf("O assento não está disponível. Deseja cadastrar novamente? (s/n) ");
         getchar();
         scanf("%c", &opc);
-        if (opc == 's') { saveSpecificSeat(t); }
+        if (opc == 's') { main_SaveSpecificSeat(t); }
         else { return; }
     }
+}
+
+void main_CancelateReservation(Theater t) {
+    int r, c, result;
+    char opc;
+    Seat s;
+
+    printf("Você escolheu a opção 'Cancelar Reserva'.\nDigite o número da fileira e a coluna do assento que você deseja cancelar a reserva: ");
+    scanf("%d %d", &r, &c);
+    s = t.seats[r-1][c-1];
+    result = cancelReservation(t, r, c);
+    if (result == 0) { 
+        printf("Houve um problema no cancelamento. Deseja tentar novamente? (s/n) ");
+        getchar();
+        scanf("%c", &opc);
+        if (opc == 's') { main_CancelateReservation(t); }
+        else { 
+            printf("Reserva do assento %c%d não foi cancelada. \n", s.row, s.number);
+            return; 
+        }
+    } 
+    else {
+        printf("Caro cliente, sua reserva do assento %c%d foi cancelada com sucesso.\n", s.row, s.number);
+    }
+}
+
+void main_View(Theater t) {
+    printf("Estado atual do teatro com assentos livres e ocupados:\n");
+    displayTheater(t);
 }

@@ -3,6 +3,10 @@
 
 #include "entities.h"
 
-void saveSpecificSeat(Theater t);
+void main_SaveSpecificSeat(Theater t);
+
+void main_CancelateReservation(Theater t);
+
+void main_View(Theater t);
 
 #endif
