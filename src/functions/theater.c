@@ -66,7 +66,7 @@ void displayTheater(Theater t) {
 int createReservation(Theater t, int r, int c, char *n) {
     Seat *s = &(t.seats[r-1][c-1]);
     if (isSeatFree(t, r-1, c-1) == 1){
-        s->name = n;
+        s->name = strdup(n);
         s->reserved = 1;
         return 1;
     }
@@ -88,4 +88,29 @@ int cancelReservation(Theater t, int r, int c){
         return 1;
     }
     return 0; 
+}
+
+int saveState(Theater t, char *argv){
+    Seat s;
+    FILE *archive = fopen(argv, "w");
+    if (archive == NULL) {
+        printf("Erro ao abrir o arquivo.\n");
+        return 1;
+    // {colocar diretório dps}
+    }
+
+    fprintf(archive, "%d\n", t.qtdRows);
+    fprintf(archive, "%d\n", t.qtdColumns);
+
+    for (int i = 0; i < t.qtdRows; i++) {
+        for (int k = 0; k < t.qtdColumns; k++) {
+            s = t.seats[i][k];
+            fprintf(archive, "%c\n", s.row);
+            fprintf(archive, "%d\n", s.number);
+            fprintf(archive, "%s\n", s.name);
+            fprintf(archive, "%d\n", s.reserved);
+        }
+    }
+    fclose(archive);
+    return 0;
 }

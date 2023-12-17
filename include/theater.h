@@ -40,4 +40,6 @@ int cancelReservation(Theater t, int r, int c);
 /// @return 1 se o assento está disponível; senão, retorna 0. 
 int isSeatFree(Theater t, int r, int c);
 
+int saveState(Theater t, char *argv);
+
 #endif
