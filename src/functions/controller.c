@@ -13,7 +13,7 @@ int validateParams(Theater t, int r, int c) {
 void main_SaveSpecificSeat(Theater t) { 
     char *str = malloc(sizeof(char) * 100);
     int r, c, result, validation;
-    Seat s;
+    Seat *s;
     char opc;
 
     printf("Você escolheu a opção 'Reservar Assento'.\nDigite seu primeiro nome, o número da fileira e o número da cadeira: ");
@@ -30,10 +30,10 @@ void main_SaveSpecificSeat(Theater t) {
         validation = validateParams(t, r, c);
     }
 
-    s = t.seats[r-1][c-1];
+    s = &(t.seats[r-1][c-1]);
     result = createReservation(t, r, c, str);
     if (result == 1) {
-        printf("Reserva feita com sucesso no assento %c%d no nome de %s \n!", s.row, s.number,s.name);
+        printf("Reserva feita com sucesso no assento %c%d no nome de %s \n!", s->row, s->number, s->name);
     }
     else {
         printf("O assento não está disponível. Deseja cadastrar novamente? (s/n) ");
@@ -47,11 +47,11 @@ void main_SaveSpecificSeat(Theater t) {
 void main_CancelateReservation(Theater t) {
     int r, c, result;
     char opc;
-    Seat s;
+    Seat *s;
 
     printf("Você escolheu a opção 'Cancelar Reserva'.\nDigite o número da fileira e a coluna do assento que você deseja cancelar a reserva: ");
     scanf("%d %d", &r, &c);
-    s = t.seats[r-1][c-1];
+    s = &(t.seats[r-1][c-1]);
     result = cancelReservation(t, r, c);
     if (result == 0) { 
         printf("Houve um problema no cancelamento. Deseja tentar novamente? (s/n) ");
@@ -59,12 +59,12 @@ void main_CancelateReservation(Theater t) {
         scanf("%c", &opc);
         if (opc == 's') { main_CancelateReservation(t); }
         else { 
-            printf("Reserva do assento %c%d não foi cancelada. \n", s.row, s.number);
+            printf("Reserva do assento %c%d não foi cancelada. \n", s->row, s->number);
             return; 
         }
     } 
     else {
-        printf("Caro cliente, sua reserva do assento %c%d foi cancelada com sucesso.\n", s.row, s.number);
+        printf("Caro cliente, sua reserva do assento %c%d foi cancelada com sucesso.\n", s->row, s->number);
     }
 }
 
