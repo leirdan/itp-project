@@ -91,6 +91,27 @@ int cancelReservation(Theater t, int r, int c){
     return 0; 
 }
 
+int cancelMultipleReservations(Theater t, char *n) {
+    int check, result, counter = 0;
+    for (int i = 0; i < t.qtdRows; i++) {
+        for (int k = 0; k < t.qtdColumns; k++) {
+
+            if (isSeatFree(t, i, k) == 0) {
+               check = strcmp(n, t.seats[i][k].name);
+               if (check == 0) { 
+                // Incremento em 1 para que o número da fileira e da poltrona sejam passados, e não seus índices e evitar erros.
+                    result = cancelReservation(t, i + 1, k + 1);
+                    if (result == 1) { counter++; }
+                }
+                else { continue; }
+            }
+            else { continue; }
+
+        }
+    }
+    return counter;
+}
+
 int saveState(Theater t, char *file){
     Seat s;
     FILE *archive = fopen(file, "w");

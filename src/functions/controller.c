@@ -148,3 +148,29 @@ void main_SaveMultipleSeats(Theater t) {
     }     
 
 }
+
+void main_CancelMultipleReservations(Theater t) {
+    char *str = malloc(sizeof(char) * 99);
+    int result;
+    char opc;
+
+    printf("Você escolheu a opção 'Cancelar reservas de uma pessoa.'\n");
+    printf("Digite o nome da pessoa que terá as reservas excluídas (até 99 caracteres): \n");
+    scanf("%s", str);
+    str[strlen(str)] = '\0';
+
+    result = cancelMultipleReservations(t, str);
+
+    if (result == 0) {
+        printf("Não há nenhuma reserva para essa pessoa. Deseja tentar novamente? (s/n) ");
+        getchar();
+        scanf("%c", &opc);  
+        if (opc == 's') { main_CancelMultipleReservations(t); }
+        else { return; }
+    }
+    else {
+        printf("%d reservas no total foram canceladas para %s!\n", result, str);
+        return;
+    }
+
+}

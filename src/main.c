@@ -37,21 +37,25 @@ int main(int argc, char *argv[]) {
                 break;
             case 2: // Carregar estado
                 break;
-            case 3: // Exibir Teatro
+            case 3: // Exibir teatro
                 main_View(t);
                 redirect();
                 break;
-            case 4: // Reservar Assento
+            case 4: // Reservar assento
                 main_View(t);
                 main_SaveSpecificSeat(t);
                 redirect();
                 break;
-            case 5: // Reservar Assentos Consecutivos
+            case 5: // Reservar assentos consecutivos
                 main_SaveMultipleSeats(t);
                 redirect();
                 break;
             case 8: // Cancelar reserva de um assento
                 main_CancelReservation(t);
+                redirect();
+                break;
+            case 9: // Cancelar todas as reservas para uma mesma pessoa
+                main_CancelMultipleReservations(t);
                 redirect();
                 break;
             default:
@@ -74,6 +78,7 @@ void printOperations() {
     printf("04 | Reservar Assento\n");
     printf("05 | Reservar Assentos Consecutivos\n");
     printf("08 | Cancelar Reserva\n");
+    printf("09 | Cancelar Reservas de uma Pessoa\n");
 }
 
 void redirect() {

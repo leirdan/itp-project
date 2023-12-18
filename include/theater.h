@@ -33,6 +33,12 @@ void displayTheater(Theater t);
 /// @return 1 se o assento estava reservado e 0 caso contrário.
 int cancelReservation(Theater t, int r, int c);
 
+/// @brief Cancela todas as reservas de assentos para uma única pessoa.
+/// @param t O teatro.
+/// @param n Nome da pessoa que reservou.
+/// @return Número de reservas canceladas.
+int cancelMultipleReservations(Theater t, char *n);
+
 /// @brief Verifica se um assento está reservado no teatro.
 /// @param t O teatro.
 /// @param r Índice da fileira.

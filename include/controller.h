@@ -13,4 +13,6 @@ void main_SaveStateOnFile(Theater t);
 
 void main_SaveMultipleSeats(Theater t);
 
+void main_CancelMultipleReservations(Theater t);
+
 #endif
