@@ -18,6 +18,7 @@ Theater createTheater(int l, int c) {
     for (int i = 0; i < l; i++) {
         for (int k = 0; k < c; k++) {
             row = 'A' + i;
+            t.seats[i][k].name = "null";
             t.seats[i][k].reserved = 0;
             t.seats[i][k].row = row;
             t.seats[i][k].number = k + 1;
@@ -83,7 +84,7 @@ int isSeatFree(Theater t, int r, int c) {
 int cancelReservation(Theater t, int r, int c){
     Seat *s = &(t.seats[r-1][c-1]);
     if (isSeatFree(t, r-1, c-1) == 0){
-        s->name = "";
+        s->name = "null";
         s->reserved = 0;
         return 1;
     }
@@ -107,7 +108,6 @@ int saveState(Theater t, char *file){
             fprintf(archive, "%c\n", s.row);
             fprintf(archive, "%d\n", s.number);
             fprintf(archive, "%s\n", s.name);
-            fprintf(archive, "%d\n", s.reserved);
         }
     }
     fclose(archive);
