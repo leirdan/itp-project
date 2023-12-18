@@ -2,10 +2,11 @@
 
 1. Criar função loadState (*clezio*);
 2. Ajeitar a leitura das strings, adicionando o caractere '\0' (a definir);
-3. Criar função cancelReservations(*andriel*);
+3. Criar arquivo do compilador (*andriel*);
 
-* <del>Verificar erro quando no `realloc` do `main.c` (quando há 7 operações ou mais); </del>
+* <del>Criar função cancelReservations(*andriel*)</del>;
 * <del>Consertar os textos dos prints (*andriel*)</del>;
+* <del>Verificar erro quando no `realloc` do `main.c` (quando há 7 operações ou mais); </del>
 * <del>Verificar e/ou transferir as alterações para o controller (*andriel*)</del>;
     - <del>Modificação no realloc</del>;
     - <del>Função saveState</del>;
