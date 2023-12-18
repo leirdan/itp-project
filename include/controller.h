@@ -15,4 +15,6 @@ void main_SaveMultipleSeats(Theater t);
 
 void main_CancelMultipleReservations(Theater t);
 
+void main_CancelAllReservations(Theater t);
+
 #endif

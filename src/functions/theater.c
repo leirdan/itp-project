@@ -156,6 +156,21 @@ int createMultipleReservation(Theater t, int r, int c, char *n, int x) {
     }
 }
 
+int cancelAllReservations(Theater t) {
+    int c = 0;
+    
+    for (int i = 0; i < t.qtdRows; i++) {
+        for (int k = 0; k < t.qtdColumns; k++) {
+            if (isSeatFree(t, i, k) == 0) {
+                cancelReservation(t, i + 1, k + 1);
+                c++;
+            }
+        }
+    }
+
+    return c;
+}
+
 int checkSeatsInline(Theater t, int r, int c, int x) {
     for (int i = 0; i < x; i++) {
         if(isSeatFree(t, r-1, c-1) == 0) {

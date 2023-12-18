@@ -69,4 +69,9 @@ int createMultipleReservation(Theater t, int r, int c, char *n, int x);
 /// @return 1 se as 'x' poltronas estão livres; 0, caso contrário.
 int checkSeatsInline(Theater t, int r, int c, int x);
 
+/// @brief Cancela todas as reservas de assentos no teatro.
+/// @param t O teatro.
+/// @return Quantidade de reservas canceladas.
+int cancelAllReservations(Theater t);
+
 #endif

@@ -58,6 +58,10 @@ int main(int argc, char *argv[]) {
                 main_CancelMultipleReservations(t);
                 redirect();
                 break;
+            case 10: // Cancelar todas as reservas
+                main_CancelAllReservations(t);
+                redirect();
+                break;
             default:
                 break;
         }
@@ -79,6 +83,7 @@ void printOperations() {
     printf("05 | Reservar Assentos Consecutivos\n");
     printf("08 | Cancelar Reserva\n");
     printf("09 | Cancelar Reservas de uma Pessoa\n");
+    printf("10 | Cancelar Todas as Reservas\n");
 }
 
 void redirect() {
