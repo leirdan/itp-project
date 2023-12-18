@@ -36,6 +36,8 @@ int main(int argc, char *argv[]) {
                 redirect();
                 break;
             case 2: // Carregar estado
+                main_LoadState(t);
+                redirect();
                 break;
             case 3: // Exibir teatro
                 main_View(t);
@@ -59,8 +61,7 @@ int main(int argc, char *argv[]) {
                 redirect();
                 break;
             case 10: // Cancelar todas as reservas
-                main_CancelAllReservations(t);
-                redirect();
+            
                 break;
             default:
                 break;

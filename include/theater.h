@@ -9,10 +9,10 @@
 /// @return Um teatro alocado dinamicamente.
 Theater createTheater(int l, int c);
 
-/// @brief Carrega os dados do teatro salvo no arquivo.
-/// @param file Endereço do arquivo.
-/// @return Dados do teatro.
-Theater loadState(char *file);
+/// @brief Carrega um arquivo e cria uma nova matriz com base nas informações contidas nesse arquivo carregado
+/// @param argv Nome do arquivo
+/// @return Um novo teatro
+Theater loadState(char *argv);
 
 /// @brief Cria uma única reserva no teatro. 
 /// @param t Teatro a ser reservado.
@@ -69,9 +69,6 @@ int createMultipleReservation(Theater t, int r, int c, char *n, int x);
 /// @return 1 se as 'x' poltronas estão livres; 0, caso contrário.
 int checkSeatsInline(Theater t, int r, int c, int x);
 
-/// @brief Cancela todas as reservas de assentos no teatro.
-/// @param t O teatro.
-/// @return Quantidade de reservas canceladas.
-int cancelAllReservations(Theater t);
+
 
 #endif

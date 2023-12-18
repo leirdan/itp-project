@@ -112,9 +112,9 @@ int cancelMultipleReservations(Theater t, char *n) {
     return counter;
 }
 
-int saveState(Theater t, char *file){
+int saveState(Theater t, char *argv){
     Seat s;
-    FILE *archive = fopen(file, "w");
+    FILE *archive = fopen(argv, "w");
     if (archive == NULL) {
         printf("Erro ao abrir o arquivo.\n");
         return 0;
@@ -122,6 +122,9 @@ int saveState(Theater t, char *file){
 
     fprintf(archive, "%d\n", t.qtdRows);
     fprintf(archive, "%d\n", t.qtdColumns);
+
+    createTheater(t.qtdRows, t.qtdRows);
+
 
     for (int i = 0; i < t.qtdRows; i++) {
         for (int k = 0; k < t.qtdColumns; k++) {
@@ -133,6 +136,37 @@ int saveState(Theater t, char *file){
     }
     fclose(archive);
     return 1;
+}
+
+Theater loadState(char *argv){
+    Theater t;
+    deallocateMatrix(t.seats, t.qtdRows);
+
+    FILE *archive = fopen(argv, "r");
+
+    if (archive == NULL) {
+        printf("Erro ao abrir o arquivo.\n");
+        fclose(archive);
+        return t;
+    }
+
+    fscanf(archive, "%d", &t.qtdRows);
+    fscanf(archive, "%d", &t.qtdColumns);
+
+    t.seats = initiliazeMatrix(t.qtdRows, t.qtdColumns);
+
+    for (int i = 0; i < t.qtdRows; i++) {
+        for (int k = 0; k < t.qtdColumns; k++) {
+            fscanf(archive, "%c\n", &t.seats[i][k].row);
+            fscanf(archive, "%d\n", &t.seats[i][k].number);
+            fscanf(archive, "%s\n", t.seats[i][k].name);
+        }
+    }
+
+    fclose(archive);
+
+    return t;
+
 }
 
 int createMultipleReservation(Theater t, int r, int c, char *n, int x) {
@@ -154,21 +188,6 @@ int createMultipleReservation(Theater t, int r, int c, char *n, int x) {
         }
         return 1;
     }
-}
-
-int cancelAllReservations(Theater t) {
-    int c = 0;
-    
-    for (int i = 0; i < t.qtdRows; i++) {
-        for (int k = 0; k < t.qtdColumns; k++) {
-            if (isSeatFree(t, i, k) == 0) {
-                cancelReservation(t, i + 1, k + 1);
-                c++;
-            }
-        }
-    }
-
-    return c;
 }
 
 int checkSeatsInline(Theater t, int r, int c, int x) {

@@ -174,23 +174,30 @@ void main_CancelMultipleReservations(Theater t) {
     }
 }
 
-void main_CancelAllReservations(Theater t) {
-    char opc;
-    int total = 0;
 
-    printf("Você escolheu a opção 'Cancelar todas as reservas'.\n");
-    printf("A partir de agora todas as reservas nos assentos serão excluídas. Deseja continuar? (s/n) ");
+void main_LoadState(Theater t){
+    char *argv;
+    char opc;
+
+    printf("Você escolheu a opção 'Carregar Estado'.\n");
+    printf("Ao continuar o processo, a configuração de assentos atual será descartada. Deseja continuar? (s/n) ");
     getchar();
     scanf("%c", &opc);
 
-    if (opc == 's') {
-        total = cancelAllReservations(t);
-        if (total == 0) { 
-            printf("Nenhuma reserva foi deletada. \n");
-        }
-        else {
-            printf("%d reservas foram canceladas.\n", total);
+    if(opc == 's'){
+        printf("Digite o nome do arquivo.\n");
+        scanf("%s", &argv);
+        getchar();
+        loadState(argv);
+        printf("Operação concluída. Deseja visualizar a nova configuração de assentos? (s/n)");
+        getchar();
+        scanf("%c", &opc);
+        if(opc == 's'){
+            main_View(t);
         }
     }
-    else { printf("Operação cancelada.\n"); return; }
+    else{
+            printf("Operação cancelada.\n");
+        }
+        return;
 }
