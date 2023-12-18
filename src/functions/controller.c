@@ -46,7 +46,7 @@ void main_SaveSpecificSeat(Theater t) {
     }
 }
 
-void main_CancelateReservation(Theater t) {
+void main_CancelReservation(Theater t) {
     int r, c, result, validation;
     char opc;
     Seat *s;
@@ -70,7 +70,7 @@ void main_CancelateReservation(Theater t) {
         printf("Não há reserva para esse assento. Deseja tentar novamente? (s/n) ");
         getchar();
         scanf("%c", &opc);
-        if (opc == 's') { main_CancelateReservation(t); }
+        if (opc == 's') { main_CancelReservation(t); }
         else { return; }
     } 
     else {
