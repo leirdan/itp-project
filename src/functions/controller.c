@@ -188,7 +188,20 @@ void main_LoadState(Theater t){
         printf("Digite o nome do arquivo.\n");
         scanf("%s", &argv);
         getchar();
-        loadState(argv);
+        t = loadState(argv);
+        if (t.seats == NULL) {
+            printf("Não foi possível carregar o arquivo. Deseja tentar novamente? (s/n) ");
+            getchar();
+            scanf("%c", &opc);
+            if (opc == 's') { main_LoadState(t); }
+            else {                                                          // As vezes funciona, as vezes não. Não sei o que acontece, pode ter haver com o tamanho da string.
+                printf("Operação cancelada.\n");
+                return;
+            }
+        }
+        else {
+            printf("Arquivo carregado com sucesso!\n");
+        }
         printf("Operação concluída. Deseja visualizar a nova configuração de assentos? (s/n)");
         getchar();
         scanf("%c", &opc);
