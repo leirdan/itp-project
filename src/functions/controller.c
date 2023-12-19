@@ -150,6 +150,34 @@ void main_SaveMultipleSeats(Theater t) {
 
 }
 
+void main_SaveSpecificSeatThroughSystem(Theater t) {
+    char *str = malloc(sizeof(char) * 99);
+    char opc;
+    Seat *s;
+
+    printf("Você selecionou a opção 'Reservar assento pelo sistema'.\n");
+    printf("Ao continuar, você terá um assento reservado de forma automática. Deseja continuar? (s/n) ");
+    getchar();
+    scanf("%c", &opc);
+
+    if (opc == 's') {
+        printf("Digite seu primeiro nome: ");
+        scanf("%s", str);
+        getchar();
+        str[strlen(str)] = '\0';
+        s = saveAutomaticSeat(t, str);
+        
+        if (s == NULL) {
+            printf("Não há assentos disponíveis.\n");
+            return;
+        } else {
+            printf("Sua reserva foi marcada para o assento %c%d!\n", s->row, s->number);
+            return;
+        }
+    }
+    else { return; }
+}
+
 void main_CancelMultipleReservations(Theater t) {
     char *str = malloc(sizeof(char) * 99);
     int result;

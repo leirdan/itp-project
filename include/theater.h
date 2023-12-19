@@ -74,4 +74,10 @@ int checkSeatsInline(Theater t, int r, int c, int x);
 /// @return Quantidade de reservas canceladas.
 int cancelAllReservations(Theater t);
 
+/// @brief Faz uma reserva para o primeiro assento disponível que encontrar.
+/// @param t O teatro.
+/// @param n Nome do cliente.
+/// @return Endereço de memória do assento ou NULL caso não haja assento disponível.
+Seat *saveAutomaticSeat(Theater t, char *n);
+
 #endif

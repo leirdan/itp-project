@@ -74,6 +74,21 @@ int createReservation(Theater t, int r, int c, char *n) {
     return 0;
 }
 
+
+Seat *saveAutomaticSeat(Theater t, char *n) {
+    Seat *s = NULL;
+    for (int i = 0; i < t.qtdRows; i++) {
+        for (int k = 0; k < t.qtdColumns; k++) {
+            if (isSeatFree(t, i, k) == 1) {
+                s = &(t.seats[i][k]);
+                s->name = n;
+                s->reserved = 1;
+                return s;
+            }
+        }
+    }
+}
+
 int isSeatFree(Theater t, int r, int c) {
     if (t.seats[r][c].reserved == 0) {
         return 1;
@@ -220,6 +235,5 @@ int cancelAllReservations(Theater t) {
             }
         }
     }
-
     return c;
 }

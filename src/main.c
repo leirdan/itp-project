@@ -11,8 +11,7 @@ void printOperations();
 void redirect();
 
 int main(int argc, char *argv[]) { 
-    int f, n, op = 1, c = 0;
-    int *operations = malloc(sizeof(int));
+    int f, n, op = 1;
 
     system("clear");
     printf("Seja bem vindo!\n");
@@ -52,6 +51,10 @@ int main(int argc, char *argv[]) {
                 main_SaveMultipleSeats(t);
                 redirect();
                 break;
+            case 6: // Reservar assentos pelo sistema
+                main_SaveSpecificSeatThroughSystem(t);
+                redirect();
+                break;
             case 8: // Cancelar reserva de um assento
                 main_CancelReservation(t);
                 redirect();
@@ -70,7 +73,6 @@ int main(int argc, char *argv[]) {
     }
 
     deallocateMatrix(t.seats, t.qtdRows);
-    free(operations);
 
     return 0;
 }
@@ -83,6 +85,7 @@ void printOperations() {
     printf("03 | Exibir Teatro\n");
     printf("04 | Reservar Assento\n");
     printf("05 | Reservar Assentos Consecutivos\n");
+    printf("06 | Reservar Assento pelo Sistema\n");
     printf("08 | Cancelar Reserva\n");
     printf("09 | Cancelar Reservas de uma Pessoa\n");
     printf("10 | Cancelar Todas as Reservas\n");
