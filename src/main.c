@@ -61,7 +61,8 @@ int main(int argc, char *argv[]) {
                 redirect();
                 break;
             case 10: // Cancelar todas as reservas
-            
+                main_CancelAllReservations(t);
+                redirect();
                 break;
             default:
                 break;

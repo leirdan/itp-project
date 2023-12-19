@@ -208,3 +208,18 @@ int checkSeatsInline(Theater t, int r, int c, int x) {
     }
     return 1;
 }
+
+int cancelAllReservations(Theater t) {
+    int c = 0;
+
+    for (int i = 0; i < t.qtdRows; i++) {
+        for (int k = 0; k < t.qtdColumns; k++) {
+            if (isSeatFree(t, i, k) == 0) {
+                cancelReservation(t, i + 1, k + 1);
+                c++;
+            }
+        }
+    }
+
+    return c;
+}

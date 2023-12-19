@@ -210,3 +210,24 @@ void main_LoadState(Theater t){
     }
     else { printf("Operação cancelada.\n"); return; }
 }
+
+void main_CancelAllReservations(Theater t) {
+    char opc;
+    int total = 0;
+
+    printf("Você escolheu a opção 'Cancelar todas as reservas'.\n");
+    printf("A partir de agora todas as reservas nos assentos serão excluídas. Deseja continuar? (s/n) ");
+    getchar();
+    scanf("%c", &opc);
+
+    if (opc == 's') {
+        total = cancelAllReservations(t);
+        if (total == 0) { 
+            printf("Nenhuma reserva foi deletada. \n");
+        }
+        else {
+            printf("%d reservas foram canceladas.\n", total);
+        }
+    }
+    else { printf("Operação cancelada.\n"); return; }
+}
