@@ -142,7 +142,7 @@ void main_SaveMultipleSeats(Theater t) {
             if (opc == 's') { main_SaveMultipleSeats(t); }
             break;
         case 1:
-            printf("Os %d assentos escolhidos da fileira %c foram reservados com sucesso!\n");
+            printf("Os %d assentos escolhidos da fileira %c foram reservados com sucesso!\n", x, t.seats[r-1][0].row);
             break;
         default:
             break;
