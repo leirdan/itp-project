@@ -17,5 +17,7 @@ void main_CancelMultipleReservations(Theater t);
 
 void main_CancelAllReservations(Theater t);
 
+void main_SaveSpecificSeatThroughSystem(Theater t);
+
 Theater main_LoadState();
 #endif

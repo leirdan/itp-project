@@ -55,6 +55,10 @@ int main(int argc, char *argv[]) {
                 main_SaveSpecificSeatThroughSystem(t);
                 redirect();
                 break;
+            case 7: // Reservar assentos consecutivos pelo sistema
+                main_SaveMultipleSeatsThroughSystem(t);
+                redirect();
+                break;
             case 8: // Cancelar reserva de um assento
                 main_CancelReservation(t);
                 redirect();
@@ -86,6 +90,7 @@ void printOperations() {
     printf("04 | Reservar Assento\n");
     printf("05 | Reservar Assentos Consecutivos\n");
     printf("06 | Reservar Assento pelo Sistema\n");
+    printf("07 | Reservar Assentos Consecutivos pelo Sistema\n");
     printf("08 | Cancelar Reserva\n");
     printf("09 | Cancelar Reservas de uma Pessoa\n");
     printf("10 | Cancelar Todas as Reservas\n");
