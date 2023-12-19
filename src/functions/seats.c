@@ -1,17 +1,22 @@
 #include "../../include/entities.h"
 #include <stdlib.h>
 
-Assento **inicializarMatriz(int l, int c) {
-    if (l > 26 || c > 99) {
+Seat **initiliazeMatrix(int l, int c) {
+    if ((l > 26 || l == 0) || (c > 99 || c ==0)) {
         return NULL;
     } else {
-        // Aloca espaço para as linhas.
-        Assento **a = (Assento **) malloc(sizeof(Assento *) * l);
+        Seat **a = (Seat **) calloc(l, sizeof(Seat *) * l); // Aloca espaço para as linhas.
 
         for (int i = 0; i < l; i++) {
-            // Aloca espaço para as colunas.
-            a[i] = (Assento *) malloc(sizeof(Assento) * c);
+            a[i] = (Seat *) calloc(c, sizeof(Seat) * c); // Aloca espaço para as colunas.
         }
         return a;
     }
+}
+
+void deallocateMatrix(Seat **a, int r) {
+    for (int i = 0; i < r; i++) {
+        free(a[i]);
+    }
+    free(a);
 }

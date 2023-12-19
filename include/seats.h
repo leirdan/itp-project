@@ -4,9 +4,14 @@
 #include "entities.h"
 
 /// @brief Aloca e inicializa uma matriz de assentos.
-/// @param l Número de fileiras.
+/// @param r Número de fileiras.
 /// @param c Número de colunas.
 /// @return Endereço base da matriz de assentos.
-Assento **inicializarMatriz(int l, int c);
+Seat **initiliazeMatrix(int r, int c);
+
+/// @brief Desaloca uma matriz de assentos.
+/// @param a Ponteiro para a matriz.
+/// @param r Quantidade de linhas da matriz.
+void deallocateMatrix(Seat **a, int r);
 
 #endif
