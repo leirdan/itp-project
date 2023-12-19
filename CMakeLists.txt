@@ -8,5 +8,5 @@ include_directories(include)
 file(GLOB SOURCES "src/*.c" "src/functions/*.c" "include/*.h")
 add_library(mylib STATIC ${SOURCES})
 
-add_executable(itp-project src/main.c)
-target_link_libraries(itp-project mylib)
+add_executable(main src/main.c)
+target_link_libraries(main mylib)
