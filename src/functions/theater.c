@@ -140,13 +140,14 @@ int saveState(Theater t, char *argv){
 
 Theater loadState(char *argv){
     Theater t;
-    deallocateMatrix(t.seats, t.qtdRows);
+    t.seats = NULL;
+    t.qtdRows = 0;
+    t.qtdColumns = 0;
 
     FILE *archive = fopen(argv, "r");
 
     if (archive == NULL) {
         printf("Erro ao abrir o arquivo.\n");
-        fclose(archive);
         return t;
     }
 
