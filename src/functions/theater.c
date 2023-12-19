@@ -37,26 +37,26 @@ void displayTheater(Theater t) {
 
             if (s.number == 1) { 
                 if (s.reserved == 0) {
-                    printf("| ]%c%d[ ", s.row, s.number);
+                    printf("]%c%d[ ", s.row, s.number);
                 } 
                 else {
-                    printf("| [%c%d] ", s.row, s.number);
+                    printf("[%c%d] ", s.row, s.number);
                 }
             }
             else if (s.number == t.qtdColumns) {
                  if (s.reserved == 0) {
-                    printf("| ]%c%d[ | ", s.row, s.number);
+                    printf("]%c%d[ ", s.row, s.number);
                 } 
                 else {
-                    printf("| [%c%d] | ", s.row, s.number);
+                    printf("[%c%d] ", s.row, s.number);
                 }
             }
             else {
                 if (s.reserved == 0) {
-                    printf("| ]%c%d[ ", s.row, s.number);
+                    printf("]%c%d[ ", s.row, s.number);
                 } 
                 else {
-                    printf("| [%c%d] ", s.row, s.number);
+                    printf("[%c%d] ", s.row, s.number);
                 }    
             }
         }
@@ -87,6 +87,32 @@ Seat *saveAutomaticSeat(Theater t, char *n) {
             }
         }
     }
+}
+
+Seat ** saveAutomaticMultipleSeat(Theater t, int x, char *n) {
+    Seat **seats = malloc(sizeof(Seat *) * x);
+    int result, index = 0;
+    
+    for (int i = 0; i < t.qtdRows; i++) {
+        for (int k = 0; k < t.qtdColumns; k++) {
+            // Se o assento estiver vazio
+            if (isSeatFree(t, i, k) == 1) {
+                // Se os próximos 'x' assentos estiverem vazios
+                if (checkSeatsInline(t, i+1, k+1, x) == 1) {
+                    // Cadastre w reservas
+                    for (int w = 0; w < x; w++) {
+                        result = createReservation(t, i+1, k+w+1, n);
+                        seats[index++] = &(t.seats[i][k+w]);
+                    }
+                    return seats;
+                }
+            }
+            else { continue; }
+
+        }
+    }
+
+    return NULL;
 }
 
 int isSeatFree(Theater t, int r, int c) {
