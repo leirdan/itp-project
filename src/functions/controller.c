@@ -1,5 +1,6 @@
 #include "../../include/theater.h"
 #include "../../include/controller.h"
+#include "../../include/seats.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -174,9 +175,8 @@ void main_CancelMultipleReservations(Theater t) {
     }
 }
 
-
 void main_LoadState(Theater t){
-    char *argv;
+    char *file = malloc(sizeof(char) * 54);
     char opc;
 
     printf("Você escolheu a opção 'Carregar Estado'.\n");
@@ -185,19 +185,28 @@ void main_LoadState(Theater t){
     scanf("%c", &opc);
 
     if(opc == 's'){
-        printf("Digite o nome do arquivo.\n");
-        scanf("%s", &argv);
-        getchar();
-        loadState(argv);
-        printf("Operação concluída. Deseja visualizar a nova configuração de assentos? (s/n)");
-        getchar();
-        scanf("%c", &opc);
-        if(opc == 's'){
-            main_View(t);
-        }
+        printf("Digite o nome do arquivo (até 50 caracteres): ");
+        scanf("%s", file);
+        strcat(file, ".txt");
+        printf("%s", file);
+
+        deallocateMatrix(t.seats, t.qtdRows);
+        
+        t = loadState(file);
+
+        // if (&newT != NULL) {
+            // dá erro de segmentation fault após digitar s
+            printf("Operação concluída. Deseja visualizar a nova configuração de assentos? (s/n) ");
+            getchar();
+            scanf("%c", &opc);
+            // verificar se tá certo chamar a função main_view
+            if (opc == 's') { main_View(t); }
+            else { return; }
+        // }
+        // else {
+        //     // deu errado!
+        // }
+
     }
-    else{
-            printf("Operação cancelada.\n");
-        }
-        return;
+    else { printf("Operação cancelada.\n"); return; }
 }
