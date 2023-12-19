@@ -178,49 +178,6 @@ void main_SaveSpecificSeatThroughSystem(Theater t) {
     else { return; }
 }
 
-void main_SaveMultipleSeatsThroughSystem(Theater t) {
-    char *str = malloc(sizeof(char) * 99);
-    int x;
-    char opc;
-    Seat **seats;
-
-    printf("Você selecionou a opção 'Reservar assentos consecutivos pelo sistema'.\n");
-    printf("Digite seu nome: ");
-    scanf("%s", str);
-    str[strlen(str)] = '\0';
-    getchar();
-    printf("Digite a quantidade de assentos a reservar: ");
-    scanf("%d", &x);
-
-    if (x > t.qtdColumns) {
-        printf("Não é possível reservar %d assentos consecutivos pois a fileira contém somente %d assentos. Deseja tentar novamente? (s/n) ");
-        getchar();
-        scanf("%c", &opc);
-        if (opc == 's') { main_SaveMultipleSeatsThroughSystem(t); }
-        return;
-    }
-    
-    seats = saveAutomaticMultipleSeat(t, x, str);
-
-    if (seats == NULL) {
-        printf("Não foi possível reservar %d assentos de forma consecutiva.\n");
-    }
-    else {
-        printf("Foram reservados os assentos");
-        for (int i = 0; i < x; i++) {
-            if (i + 1 != x) {
-                printf(" %c%d,", seats[i]->row, seats[i]->number);
-            } 
-            else {
-                printf(" %c%d", seats[i]->row, seats[i]->number);
-            }
-        }
-        printf(" para %s!\n", seats[0]->name);
-
-    }
-    return;
-}
-
 void main_CancelMultipleReservations(Theater t) {
     char *str = malloc(sizeof(char) * 99);
     int result;
