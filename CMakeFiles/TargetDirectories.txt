@@ -1,0 +1,4 @@
+C:/Users/conta/itp-project/CMakeFiles/mylib.dir
+C:/Users/conta/itp-project/CMakeFiles/main.dir
+C:/Users/conta/itp-project/CMakeFiles/edit_cache.dir
+C:/Users/conta/itp-project/CMakeFiles/rebuild_cache.dir

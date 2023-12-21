@@ -1,0 +1,2 @@
+C:\MinGW\bin\ar.exe qc libmylib.a CMakeFiles/mylib.dir/src/functions/controller.c.obj CMakeFiles/mylib.dir/src/functions/seats.c.obj CMakeFiles/mylib.dir/src/functions/theater.c.obj CMakeFiles/mylib.dir/src/main.c.obj
+C:\MinGW\bin\ranlib.exe libmylib.a

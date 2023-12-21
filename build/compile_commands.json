@@ -1,0 +1,32 @@
+[
+{
+  "directory": "C:/Users/conta/itp-project/build",
+  "command": "C:\\MinGW\\bin\\gcc.exe  @CMakeFiles/mylib.dir/includes_C.rsp -g -o CMakeFiles\\mylib.dir\\src\\functions\\controller.c.obj -c C:\\Users\\conta\\itp-project\\src\\functions\\controller.c",
+  "file": "C:/Users/conta/itp-project/src/functions/controller.c",
+  "output": "CMakeFiles/mylib.dir/src/functions/controller.c.obj"
+},
+{
+  "directory": "C:/Users/conta/itp-project/build",
+  "command": "C:\\MinGW\\bin\\gcc.exe  @CMakeFiles/mylib.dir/includes_C.rsp -g -o CMakeFiles\\mylib.dir\\src\\functions\\seats.c.obj -c C:\\Users\\conta\\itp-project\\src\\functions\\seats.c",
+  "file": "C:/Users/conta/itp-project/src/functions/seats.c",
+  "output": "CMakeFiles/mylib.dir/src/functions/seats.c.obj"
+},
+{
+  "directory": "C:/Users/conta/itp-project/build",
+  "command": "C:\\MinGW\\bin\\gcc.exe  @CMakeFiles/mylib.dir/includes_C.rsp -g -o CMakeFiles\\mylib.dir\\src\\functions\\theater.c.obj -c C:\\Users\\conta\\itp-project\\src\\functions\\theater.c",
+  "file": "C:/Users/conta/itp-project/src/functions/theater.c",
+  "output": "CMakeFiles/mylib.dir/src/functions/theater.c.obj"
+},
+{
+  "directory": "C:/Users/conta/itp-project/build",
+  "command": "C:\\MinGW\\bin\\gcc.exe  @CMakeFiles/mylib.dir/includes_C.rsp -g -o CMakeFiles\\mylib.dir\\src\\main.c.obj -c C:\\Users\\conta\\itp-project\\src\\main.c",
+  "file": "C:/Users/conta/itp-project/src/main.c",
+  "output": "CMakeFiles/mylib.dir/src/main.c.obj"
+},
+{
+  "directory": "C:/Users/conta/itp-project/build",
+  "command": "C:\\MinGW\\bin\\gcc.exe  @CMakeFiles/main.dir/includes_C.rsp -g -o CMakeFiles\\main.dir\\src\\main.c.obj -c C:\\Users\\conta\\itp-project\\src\\main.c",
+  "file": "C:/Users/conta/itp-project/src/main.c",
+  "output": "CMakeFiles/main.dir/src/main.c.obj"
+}
+]
