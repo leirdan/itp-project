@@ -1,9 +1,10 @@
 ## TO-DO
 
 1. Criar função loadState (*clezio*);
-2. Ajeitar a leitura das strings, adicionando o caractere '\0' (a definir);
-3. Criar arquivo do compilador (*andriel*);
+2. Criar arquivo do compilador (*clezio*);
+3. Tratar o caso da entrada ser maior que o número de assentos disponíveis em `main_SaveSpecificSeatThroughSystem` (*andriel*);
 
+* <del>Adicionar parâmetros à saída da reserva de múltiplos assentos (*andriel*)</del>;
 * <del>Criar função cancelReservations(*andriel*)</del>;
 * <del>Consertar os textos dos prints (*andriel*)</del>;
 * <del>Verificar erro quando no `realloc` do `main.c` (quando há 7 operações ou mais); </del>

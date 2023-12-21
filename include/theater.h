@@ -74,4 +74,17 @@ int checkSeatsInline(Theater t, int r, int c, int x);
 /// @return Quantidade de reservas canceladas.
 int cancelAllReservations(Theater t);
 
+/// @brief Cria uma reserva para o primeiro assento disponível que encontrar.
+/// @param t O teatro.
+/// @param n Nome do cliente.
+/// @return Endereço de memória do assento ou NULL caso não haja assento disponível.
+Seat *saveAutomaticSeat(Theater t, char *n);
+
+/// @brief Cria 'x' reservas em uma mesma fileira para uma única pessoa.
+/// @param t O teatro.
+/// @param x Quantidade de assentos a serem reservados.
+/// @param n Nome do cliente.
+/// @return Endereço de memória do vetor de assentos ou NULL caso não seja possível criar as 'x' reservas.
+Seat **saveAutomaticMultipleSeat(Theater t, int x, char *n);
+
 #endif
