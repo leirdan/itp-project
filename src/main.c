@@ -36,7 +36,7 @@ int main(int argc, char *argv[]) {
                 redirect();
                 break;
             case 2: // Carregar estado
-                main_LoadState(t);
+                t = main_LoadState(t);
                 redirect();
                 break;
             case 3: // Exibir teatro

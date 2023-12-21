@@ -131,6 +131,7 @@ int saveState(Theater t, char *argv){
             fprintf(archive, "%c\n", s.row);
             fprintf(archive, "%d\n", s.number);
             fprintf(archive, "%s\n", s.name);
+            fprintf(archive, "%d\n", s.reserved);
         }
     }
     fclose(archive);
@@ -139,44 +140,41 @@ int saveState(Theater t, char *argv){
 
 Theater loadState(char *file){
     Theater t;
-    char *name = malloc(sizeof(char) * 99);
-    Seat *s;
+
+    t.seats = NULL;
+    t.qtdRows = 0;
+    t.qtdColumns = 0;
+
+    char name[50];
 
     FILE *archive = fopen(file, "r");
 
     if (archive == NULL) {
         printf("Erro ao abrir o arquivo.\n");
-        fclose(archive);
         return t;
     }
 
-    fscanf(archive, "%d", &t.qtdRows);
-    fscanf(archive, "%d", &t.qtdColumns);
+    fscanf(archive, "%d\n", &t.qtdRows);
+    fscanf(archive, "%d\n", &t.qtdColumns);
 
     t.seats = initiliazeMatrix(t.qtdRows, t.qtdColumns);
 
     for (int i = 0; i < t.qtdRows; i++) {
         for (int k = 0; k < t.qtdColumns; k++) {
-            // ALOCAR OS DADOS PARA T.SEATS
-            s = &(t.seats[i][k]);
-            fscanf(archive, "%c\n", s->row);
-            fscanf(archive, "%d\n", s->number);
-            fscanf(archive, "%s\n", name);
-            if (strcmp(name, "null") != 0) {
-                s->name = name;
-                s->reserved = 1;
-            }
-            else {
-                s->name = "null";
-                s->reserved = 0;
-            }
+            fscanf(archive, "%c\n", &t.seats[i][k].row);
+            fscanf(archive, "%d\n", &t.seats[i][k].number);
+            fscanf(archive, "%s\n", &t.seats[i][k].name);
+            fscanf(archive, "%d\n", &t.seats[i][k].reserved);
         }
     }
+
+    displayTheater(t);
 
     fclose(archive);
 
     return t;
 }
+
 
 int createMultipleReservation(Theater t, int r, int c, char *n, int x) {
     int result, check = checkSeatsInline(t, r, c, x);
