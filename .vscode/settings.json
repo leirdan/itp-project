@@ -4,5 +4,7 @@
         "seats.h": "c",
         "entities.h": "c",
         "theater.h": "c"
-    }
+    },
+    "cmake.configureOnOpen": false,
+    "C_Cpp.errorSquiggles": "disabled"
 }
