@@ -246,8 +246,9 @@ void main_CancelMultipleReservations(Theater t) {
     }
 }
 
-void main_LoadState(Theater t){
-    char *file = malloc(sizeof(char) * 54);
+Theater main_LoadState(){
+    Theater t;
+    char file[50];
     char opc;
 
     printf("Você escolheu a opção 'Carregar Estado'.\n");
@@ -257,29 +258,30 @@ void main_LoadState(Theater t){
 
     if(opc == 's'){
         printf("Digite o nome do arquivo (até 50 caracteres): ");
-        scanf("%s", file);
-        strcat(file, ".txt");
-        printf("%s", file);
-
-        deallocateMatrix(t.seats, t.qtdRows);
+        scanf("%49s", file);
+        strcat(file, ".txt ");
+        file[strlen(file)] = '\0';
+        printf("%s\n", file);
         
-        t = loadState(file);
-
-        // if (&newT != NULL) {
-            // dá erro de segmentation fault após digitar s
-            printf("Operação concluída. Deseja visualizar a nova configuração de assentos? (s/n) ");
+       t = loadState(file);
+        if (t.seats == NULL) {
+            printf("Não foi possível carregar o arquivo. Deseja tentar novamente? (s/n) ");
             getchar();
             scanf("%c", &opc);
-            // verificar se tá certo chamar a função main_view
-            if (opc == 's') { main_View(t); }
-            else { return; }
-        // }
-        // else {
-        //     // deu errado!
-        // }
+            if (opc == 's') { main_LoadState(t); }
+            else {                                                          
+                printf("Operação cancelada.\n");
+                return;
+            }
+        }
+        else {
+            printf("Arquivo carregado com sucesso!\n");
+            return t;
+        }
 
     }
-    else { printf("Operação cancelada.\n"); return; }
+
+    return t;
 }
 
 void main_CancelAllReservations(Theater t) {
