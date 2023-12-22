@@ -3,7 +3,9 @@
 
 CMakeFiles/main.dir/src/main.c.obj: src/main.c \
   C:/MinGW/include/_mingw.h \
+  C:/MinGW/include/conio.h \
   C:/MinGW/include/ctype.h \
+  C:/MinGW/include/locale.h \
   C:/MinGW/include/msvcrtver.h \
   C:/MinGW/include/sdkddkver.h \
   C:/MinGW/include/stdio.h \
@@ -24,9 +26,11 @@ CMakeFiles/main.dir/src/main.c.obj: src/main.c \
 
 src/main.c:
 
-C:/MinGW/include/string.h:
-
 C:/MinGW/include/_mingw.h:
+
+C:/MinGW/include/locale.h:
+
+C:/MinGW/include/conio.h:
 
 C:/MinGW/include/ctype.h:
 
@@ -37,6 +41,8 @@ C:/MinGW/include/msvcrtver.h:
 C:/MinGW/include/stdio.h:
 
 C:/MinGW/include/stdlib.h:
+
+C:/MinGW/include/string.h:
 
 C:/MinGW/include/strings.h:
 

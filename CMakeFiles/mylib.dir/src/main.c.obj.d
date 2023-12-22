@@ -8,6 +8,7 @@ CMakeFiles/mylib.dir/src/main.c.obj: \
  c:\mingw\include\stdlib.h c:\mingw\include\ctype.h \
  c:\mingw\include\wctype.h c:\mingw\include\string.h \
  c:\mingw\include\strings.h c:\mingw\include\wchar.h \
+ c:\mingw\include\conio.h c:\mingw\include\locale.h \
  c:\users\conta\itp-project\include\seats.h \
  c:\users\conta\itp-project\include\entities.h \
  c:\users\conta\itp-project\include\theater.h \

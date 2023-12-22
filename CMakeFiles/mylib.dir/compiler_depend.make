@@ -30,6 +30,8 @@ CMakeFiles/mylib.dir/src/functions/seats.c.obj: src/functions/seats.c \
 
 CMakeFiles/mylib.dir/src/functions/theater.c.obj: src/functions/theater.c \
   C:/MinGW/include/_mingw.h \
+  C:/MinGW/include/conio.h \
+  C:/MinGW/include/locale.h \
   C:/MinGW/include/msvcrtver.h \
   C:/MinGW/include/sdkddkver.h \
   C:/MinGW/include/stdio.h \
@@ -47,7 +49,9 @@ CMakeFiles/mylib.dir/src/functions/theater.c.obj: src/functions/theater.c \
 
 CMakeFiles/mylib.dir/src/main.c.obj: src/main.c \
   C:/MinGW/include/_mingw.h \
+  C:/MinGW/include/conio.h \
   C:/MinGW/include/ctype.h \
+  C:/MinGW/include/locale.h \
   C:/MinGW/include/msvcrtver.h \
   C:/MinGW/include/sdkddkver.h \
   C:/MinGW/include/stdio.h \
@@ -103,6 +107,10 @@ include/theater.h:
 src/functions/seats.c:
 
 src/functions/theater.c:
+
+C:/MinGW/include/conio.h:
+
+C:/MinGW/include/locale.h:
 
 src/main.c:
 
