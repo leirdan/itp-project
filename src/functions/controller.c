@@ -246,8 +246,7 @@ void main_CancelMultipleReservations(Theater t) {
     }
 }
 
-Theater main_LoadState(){
-    Theater t;
+Theater main_LoadState(Theater t){
     char file[50];
     char opc;
 
@@ -260,9 +259,9 @@ Theater main_LoadState(){
         printf("Digite o nome do arquivo (até 50 caracteres): ");
         scanf("%49s", file);
         strcat(file, ".txt ");
-        file[strlen(file)] = '\0';
         printf("%s\n", file);
-        
+        deallocateMatrix(t.seats, t.qtdRows);
+
        t = loadState(file);
         if (t.seats == NULL) {
             printf("Não foi possível carregar o arquivo. Deseja tentar novamente? (s/n) ");
