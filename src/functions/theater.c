@@ -4,6 +4,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <conio.h>
+#include<locale.h>
 
 Theater createTheater(int l, int c) {
     Theater t;
@@ -263,4 +265,21 @@ int cancelAllReservations(Theater t) {
         }
     }
     return c;
+}
+
+void seeConsecutiveSeats(Theater t, int n) {
+    for (int i = 0; i < t.qtdRows; i++) {
+        int count = 0;
+        for (int k = 0; k < t.qtdColumns; k++) {
+            if (isSeatFree(t, i, k)) {
+                count++;
+                if (count == n) {
+                    printf("Há pelo menos %d assentos consecutivos disponíveis na fileira %c, começando no assento %d.\n", n, t.seats[i][k - n + 1].row, t.seats[i][k - n + 1].number);
+                    break;
+                }
+            } else {
+                count = 0;
+            }
+        }
+    }
 }

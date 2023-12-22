@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+
 int validateParams(Theater t, int r, int c) {
     if (r > t.qtdRows || c > t.qtdColumns || r < 1 || c < 1) {
         return 0;
@@ -316,4 +317,23 @@ void main_CancelAllReservations(Theater t) {
         }
     }
     else { printf("Operação cancelada.\n"); return; }
+}
+
+void main_seeConsecutiveSeats(Theater t){
+    int n;
+    char opc;
+    printf("Qual é o número mínimo de assentos consecutivos que você deseja consultar? ");
+    scanf("%d\n", &n);
+    if(n == 0){
+        printf("Você será redirecionado para o menu\n");
+        return;
+    }
+    else if(n < 0 || n > t.qtdColumns){
+        printf("Valor inválido. Deseja tentar novamente? (s/n)\n");
+        getchar();
+        scanf("%c\n", &opc);  
+        if (opc == 's') { main_seeConsecutiveSeats(t); }
+        else { return; }
+        }
+    seeConsecutiveSeats(t, n);
 }

@@ -17,6 +17,8 @@ void main_CancelMultipleReservations(Theater t);
 
 void main_CancelAllReservations(Theater t);
 
+void main_seeConsecutiveSeats(Theater t);
+
 void main_SaveSpecificSeatThroughSystem(Theater t);
 
 void main_SaveMultipleSeatsThroughSystem(Theater t);
