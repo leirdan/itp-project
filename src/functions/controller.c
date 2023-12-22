@@ -298,20 +298,6 @@ Theater main_LoadState(Theater t){
     }
 
     return t;
-            if (opc == 's') { main_LoadState(t); }
-            else {                                                          
-                printf("Operação cancelada.\n");
-                return;
-            }
-        }
-        else {
-            printf("Arquivo carregado com sucesso!\n");
-            return t;
-        }
-
-    }
-
-    return t;
 }
 
 void main_CancelAllReservations(Theater t) {
