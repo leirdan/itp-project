@@ -1,8 +1,11 @@
 ## TO-DO
 
-1. Criar função de consultar assentos consecutivos (*clezio*);
-2. Consertar textos no Windows.
+1. Preparar roteiro para gravar o vídeo;
+2. Gravar e publicar o vídeo;
+3. Submeter o trabalho no Sigaa;
 
+* <del> Criar função de consultar assentos consecutivos (*clezio*) </del>;
+* <del> Consertar textos no Windows. </del>
 * <del> Tratar o caso da entrada ser maior que o número de assentos disponíveis em `main_SaveSpecificSeatThroughSystem` (*andriel*) </del>;
 * <del>Criar função loadState (*clezio*)</del>;
 * <del>Criar arquivo do compilador (*clezio*)</del>;
