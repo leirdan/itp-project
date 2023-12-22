@@ -87,4 +87,9 @@ Seat *saveAutomaticSeat(Theater t, char *n);
 /// @return Endereço de memória do vetor de assentos ou NULL caso não seja possível criar as 'x' reservas.
 Seat **saveAutomaticMultipleSeat(Theater t, int x, char *n);
 
+/// @brief Consulta a disponibilidade de assentos consecutivos
+/// @param t O teatro
+/// @param n Número mínimo de assentos
+void seeConsecutiveSeats(Theater t, int n);
+
 #endif
