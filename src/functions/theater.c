@@ -4,8 +4,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-#include <conio.h>
-#include<locale.h>
+#include <locale.h>
 
 Theater createTheater(int l, int c) {
     Theater t;
@@ -169,7 +168,7 @@ int saveState(Theater t, char *argv){
     fprintf(archive, "%d\n", t.qtdRows);
     fprintf(archive, "%d\n", t.qtdColumns);
 
-    createTheater(t.qtdRows, t.qtdRows);
+    createTheater(t.qtdRows, t.qtdColumns);
 
     for (int i = 0; i < t.qtdRows; i++) {
         for (int k = 0; k < t.qtdColumns; k++) {
