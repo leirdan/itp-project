@@ -1,9 +1,11 @@
 ## TO-DO
 
-1. Criar função loadState (*clezio*);
-2. Criar arquivo do compilador (*clezio*);
-3. Tratar o caso da entrada ser maior que o número de assentos disponíveis em `main_SaveSpecificSeatThroughSystem` (*andriel*);
+1. Criar função de consultar assentos consecutivos (*clezio*);
+2. Consertar textos no Windows.
 
+* <del> Tratar o caso da entrada ser maior que o número de assentos disponíveis em `main_SaveSpecificSeatThroughSystem` (*andriel*) </del>;
+* <del>Criar função loadState (*clezio*)</del>;
+* <del>Criar arquivo do compilador (*clezio*)</del>;
 * <del>Adicionar parâmetros à saída da reserva de múltiplos assentos (*andriel*)</del>;
 * <del>Criar função cancelReservations(*andriel*)</del>;
 * <del>Consertar os textos dos prints (*andriel*)</del>;

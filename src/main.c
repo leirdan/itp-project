@@ -19,6 +19,7 @@ int main(int argc, char *argv[]) {
     scanf("%d %d", &f, &n);
     
     Theater t = createTheater(f, n);
+    Theater newT;
     
     system("sleep 1");
 
@@ -48,26 +49,32 @@ int main(int argc, char *argv[]) {
                 redirect();
                 break;
             case 5: // Reservar assentos consecutivos
+                main_View(t);
                 main_SaveMultipleSeats(t);
                 redirect();
                 break;
             case 6: // Reservar assentos pelo sistema
+                main_View(t);
                 main_SaveSpecificSeatThroughSystem(t);
                 redirect();
                 break;
             case 7: // Reservar assentos consecutivos pelo sistema
+                main_View(t);
                 main_SaveMultipleSeatsThroughSystem(t);
                 redirect();
                 break;
             case 8: // Cancelar reserva de um assento
+                main_View(t);
                 main_CancelReservation(t);
                 redirect();
                 break;
             case 9: // Cancelar todas as reservas para uma mesma pessoa
+                main_View(t);
                 main_CancelMultipleReservations(t);
                 redirect();
                 break;
             case 10: // Cancelar todas as reservas
+                main_View(t);
                 main_CancelAllReservations(t);
                 redirect();
                 break;

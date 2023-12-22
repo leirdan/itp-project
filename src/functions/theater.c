@@ -106,6 +106,9 @@ Seat ** saveAutomaticMultipleSeat(Theater t, int x, char *n) {
                     }
                     return seats;
                 }
+                else {
+                    continue;
+                }
             }
             else { continue; }
 
@@ -116,7 +119,7 @@ Seat ** saveAutomaticMultipleSeat(Theater t, int x, char *n) {
 }
 
 int isSeatFree(Theater t, int r, int c) {
-    if (t.seats[r][c].reserved == 0) {
+    if (t.seats[r][c].reserved == 0 && (r < t.qtdRows && c < t.qtdColumns)) {
         return 1;
     }
     return 0;
