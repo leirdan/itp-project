@@ -3,7 +3,8 @@
         "create.h": "c",
         "seats.h": "c",
         "entities.h": "c",
-        "theater.h": "c"
+        "theater.h": "c",
+        "ctype.h": "c"
     },
     "cmake.configureOnOpen": false,
     "C_Cpp.errorSquiggles": "disabled"
