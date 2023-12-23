@@ -4,8 +4,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-#include <conio.h>
-#include<locale.h>
+#include <locale.h>
 
 Theater createTheater(int l, int c) {
     Theater t;
@@ -13,7 +12,7 @@ Theater createTheater(int l, int c) {
     t.seats = NULL;
     t.seats = initiliazeMatrix(l, c);
     while (t.seats == NULL) {
-        printf("Forneça uma entrada válida: ");
+        printf("Forne�a uma entrada v�lida: ");
         scanf("%d %d", &l, &c);
         t.seats = initiliazeMatrix(l, c);
     }
@@ -99,7 +98,7 @@ Seat ** saveAutomaticMultipleSeat(Theater t, int x, char *n) {
         for (int k = 0; k < t.qtdColumns; k++) {
             // Se o assento estiver vazio
             if (isSeatFree(t, i, k) == 1) {
-                // Se os próximos 'x' assentos estiverem vazios
+                // Se os pr ximos 'x' assentos estiverem vazios
                 if (checkSeatsInline(t, i+1, k+1, x) == 1) {
                     // Cadastre w reservas
                     for (int w = 0; w < x; w++) {
@@ -145,7 +144,7 @@ int cancelMultipleReservations(Theater t, char *n) {
             if (isSeatFree(t, i, k) == 0) {
                check = strcmp(n, t.seats[i][k].name);
                if (check == 0) { 
-                // Incremento em 1 para que o número da fileira e da poltrona sejam passados, e não seus índices e evitar erros.
+                // Incremento em 1 para que o n mero da fileira e da poltrona sejam passados, e n o seus  ndices e evitar erros.
                     result = cancelReservation(t, i + 1, k + 1);
                     if (result == 1) { counter++; }
                 }
@@ -169,7 +168,7 @@ int saveState(Theater t, char *argv){
     fprintf(archive, "%d\n", t.qtdRows);
     fprintf(archive, "%d\n", t.qtdColumns);
 
-    createTheater(t.qtdRows, t.qtdRows);
+    createTheater(t.qtdRows, t.qtdColumns);
 
     for (int i = 0; i < t.qtdRows; i++) {
         for (int k = 0; k < t.qtdColumns; k++) {
@@ -226,11 +225,11 @@ int createMultipleReservation(Theater t, int r, int c, char *n, int x) {
     int result, check = checkSeatsInline(t, r, c, x);
 
     if (check == 0) {
-        // Não há disponibilidade de assentos.
+        // N o h  disponibilidade de assentos.
         return -1;
     }
     else {
-        // Há disponibilidade de assentos.
+        // H  disponibilidade de assentos.
         for (int i = 0; i < x; i++) {
             result = createReservation(t, r, c, n);
             if (result == 0) {
@@ -248,7 +247,7 @@ int checkSeatsInline(Theater t, int r, int c, int x) {
         if(isSeatFree(t, r-1, c-1) == 0) {
             return 0;
         }
-        c++; // Avança para a próxima coluna.
+        c++; // Avan a para a pr xima coluna.
     }
     return 1;
 }
@@ -274,7 +273,7 @@ void seeConsecutiveSeats(Theater t, int n) {
             if (isSeatFree(t, i, k)) {
                 count++;
                 if (count == n) {
-                    printf("Há pelo menos %d assentos consecutivos disponíveis na fileira %c, começando no assento %d.\n", n, t.seats[i][k - n + 1].row, t.seats[i][k - n + 1].number);
+                    printf("H� pelo menos %d assentos consecutivos dispon�veis na fileira %c, come�ando no assento %d.\n", n, t.seats[i][k - n + 1].row, t.seats[i][k - n + 1].number);
                     break;
                 }
             } else {

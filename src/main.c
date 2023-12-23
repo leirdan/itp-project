@@ -20,13 +20,10 @@ int main(int argc, char *argv[]) {
 
     system("cls");
     printf("Seja bem vindo!\n");
-    printf("Por favor, informe a quantidade de fileiras e número de cadeiras por fileira de seu teatro: ");
+    printf("Por favor, informe a quantidade de fileiras e nï¿½mero de cadeiras por fileira de seu teatro: ");
     scanf("%d %d", &f, &n);
     
     Theater t = createTheater(f, n);
-    Theater newT;
-    
-    system("sleep 1");
 
     while(op != 0) {
         system("cls");
@@ -83,6 +80,10 @@ int main(int argc, char *argv[]) {
                 main_CancelAllReservations(t);
                 redirect();
                 break;
+            case 11: // Verificar um assento especÃ­fico
+                main_CheckSeat(t);
+                redirect();
+                break;
             case 12: // Consultar assentos consecutivos
                 main_View(t);
                 main_seeConsecutiveSeats(t);
@@ -98,7 +99,7 @@ int main(int argc, char *argv[]) {
 }
 
 void printOperations() {
-    printf("Escolha uma das operações abaixo:\n");
+    printf("Escolha uma das operaï¿½ï¿½es abaixo:\n");
     printf("00 | Sair do Programa\n");
     printf("01 | Salvar Estado\n");
     printf("02 | Carregar Estado\n");
@@ -110,6 +111,7 @@ void printOperations() {
     printf("08 | Cancelar Reserva\n");
     printf("09 | Cancelar Reservas de uma Pessoa\n");
     printf("10 | Cancelar Todas as Reservas\n");
+    printf("11 | Verificar Disponibilidade\n");
     printf("12 | Consultar Assentos Consecutivos\n");
 }
 

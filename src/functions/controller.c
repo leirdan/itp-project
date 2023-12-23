@@ -4,6 +4,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <locale.h>
+
 
 
 int validateParams(Theater t, int r, int c) {
@@ -19,16 +21,17 @@ void main_SaveSpecificSeat(Theater t) {
     Seat *s;
     char opc;
 
-    printf("VocÃª escolheu a opÃ§Ã£o 'Reservar Assento'.\n");
-    printf("Digite seu primeiro nome: ");
-    scanf("%s", str);
+    printf("Você escolheu a opção 'Reservar Assento'.\n");
+    printf("Digite o primeiro do nome do cliente (até 99 caracteres): ");
     getchar();
-    printf("Digite o nÃºmero da fileira e o nÃºmero do assento desejada: ");
+    scanf("%s", str);
+    printf("Digite o número da fileira e o número do assento desejada: ");
+    getchar();
     scanf("%d %d", &r, &c);
 
     validation = validateParams(t, r, c);
     while (validation == 0) {
-        printf("Entradas invÃ¡lidas. Insira uma fileira e um nÃºmero de assento vÃ¡lidos: ");
+        printf("Entradas inváidas. Insira uma fileira e um número de assento váidos: ");
         getchar();
         scanf("%d %d", &r, &c);
         validation = validateParams(t, r, c);
@@ -36,13 +39,15 @@ void main_SaveSpecificSeat(Theater t) {
 
     s = &(t.seats[r-1][c-1]);
     result = createReservation(t, r, c, str);
+    
     if (result == 1) {
         printf("Reserva feita com sucesso no assento %c%d no nome de %s! \n", s->row, s->number, s->name);
     }
     else {
-        printf("O assento nÃ£o estÃ¡ disponÃ­vel. Deseja cadastrar novamente? (s/n) ");
+        printf("O assento não está disponível. Deseja cadastrar novamente? (s/n) ");
         getchar();
         scanf("%c", &opc);
+        free(str);  
         if (opc == 's') { main_SaveSpecificSeat(t); }
         else { return; }
     }
@@ -50,16 +55,17 @@ void main_SaveSpecificSeat(Theater t) {
 
 void main_CancelReservation(Theater t) {
     int r, c, result, validation;
-    char opc;
+    char opc; 
     Seat *s;
 
-    printf("VocÃª escolheu a opÃ§Ã£o 'Cancelar Reserva'.\n");
-    printf("Digite o nÃºmero da fileira e a coluna do assento que vocÃª deseja cancelar a reserva: ");
+    printf("Você escolheu a opção 'Cancelar Reserva'.\n");
+    printf("Digite o número da fileira e a coluna do assento que você deseja cancelar a reserva: ");
+    getchar();
     scanf("%d %d", &r, &c);
 
     validation = validateParams(t, r, c);
     while (validation == 0) {
-        printf("Entradas invÃ¡lidas. Insira uma fileira e um nÃºmero de assento vÃ¡lidos: ");
+        printf("Entradas inválidas. Insira uma fileira e um número de assento válidos: ");
         getchar();
         scanf("%d %d", &r, &c);
         validation = validateParams(t, r, c);
@@ -69,14 +75,14 @@ void main_CancelReservation(Theater t) {
     result = cancelReservation(t, r, c);
 
     if (result == 0) { 
-        printf("NÃ£o hÃ¡ reserva para esse assento. Deseja tentar novamente? (s/n) ");
+        printf("Não há reserva para esse assento. Deseja tentar novamente? (s/n) ");
         getchar();
         scanf("%c", &opc);
         if (opc == 's') { main_CancelReservation(t); }
         else { return; }
     } 
     else {
-        printf("Caro cliente, sua reserva do assento %c%d foi cancelada com sucesso.\n", s->row, s->number);
+        printf("A reserva do assento %c%d foi cancelada com sucesso.\n", s->row, s->number);
     }
 }
 
@@ -90,7 +96,8 @@ void main_SaveStateOnFile(Theater t) {
     int result;
     char opc;
 
-    printf("Digite o nome do arquivo a salvar o teatro (atÃ© 50 caracteres): ");
+    printf("Digite o nome do arquivo a salvar o teatro (até 50 caracteres): ");
+    getchar();
     scanf("%s", str);
     strcat(str, ".txt");
     str[strlen(str)] = '\0';
@@ -101,7 +108,8 @@ void main_SaveStateOnFile(Theater t) {
         printf("Seus dados foram salvos com sucesso! \n");
     }
     else {
-        printf("NÃ£o foi possÃ­vel abrir o arquivo. Tentar novamente? (s/n) ");
+        printf("Não foi possível abrir o arquivo. Tentar novamente? (s/n) ");
+        getchar();
         if(scanf("%c") == 's') { main_SaveStateOnFile(t); } 
         else { return; }
     }
@@ -112,34 +120,41 @@ void main_SaveMultipleSeats(Theater t) {
     int r, c, x, result, validation;
     char opc;
 
-    printf("VocÃª escolheu a opÃ§Ã£o 'Reservar Assentos Consecutivos'.\n");
-    printf("Digite seu primeiro nome: ");
+    printf("Você escolheu a opção 'Reservar Assentos Consecutivos'.\n");
+    printf("Digite o primeiro do nome do cliente (até 99 caracteres): ");
+    getchar();
     scanf("%s", str);
     str[strlen(str)] = '\0';
     getchar();
-    printf("Digite quantos assentos desejarÃ¡ reservar: ");
+    printf("Digite quantos assentos deseja reservar: ");
     scanf("%d", &x);
-    printf("Digite o nÃºmero da fileira e o nÃºmero do assento inicial: ");
+    printf("Digite o número da fileira e o número do assento inicial: ");
+    getchar();
     scanf("%d %d", &r, &c);
 
     validation = validateParams(t, r, c);
     while (validation == 0) {
-        printf("Entradas invÃ¡lidas. Insira uma fileira e um nÃºmero de assento vÃ¡lidos: ");
+        printf("Entradas inválidas. Insira uma fileira e um número de assento válidos: ");
+        getchar();
         scanf("%d %d", &r, &c);
         validation = validateParams(t, r, c);
     }
 
-    result = createMultipleReservation(t, r, c, str, x);
+    result = createMultipleReservation(t, r, c, str, x);          
 
     switch (result) {
         case -1:
-            printf("NÃ£o hÃ¡ assentos suficientes disponÃ­veis. Deseja reiniciar a operaÃ§Ã£o? (s/n) ");
+            printf("Não há assentos suficientes disponíveis. Deseja reiniciar a operação? (s/n) ");
+            getchar();
             scanf("%c", &opc);
+            free(str);  
             if (opc == 's') { main_SaveMultipleSeats(t); }
             break;
         case 0:
-            printf("NÃ£o foi possÃ­vel criar reserva em um dos assentos. Deseja reiniciar o processo? (s/n) ");
+            printf("Não foi possível criar reserva em um dos assentos. Deseja reiniciar o processo? (s/n) ");
+            getchar();
             scanf("%c", &opc);
+            free(str);  
             if (opc == 's') { main_SaveMultipleSeats(t); }
             break;
         case 1:
@@ -156,23 +171,24 @@ void main_SaveSpecificSeatThroughSystem(Theater t) {
     char opc;
     Seat *s;
 
-    printf("VocÃª selecionou a opÃ§Ã£o 'Reservar assento pelo sistema'.\n");
-    printf("Ao continuar, vocÃª terÃ¡ um assento reservado de forma automÃ¡tica. Deseja continuar? (s/n) ");
+    printf("Você selecionou a opção 'Reservar assento pelo sistema'.\n");
+    printf("Ao continuar, um assento será reservado de forma automática. Deseja continuar? (s/n) ");
     getchar();
     scanf("%c", &opc);
 
     if (opc == 's') {
-        printf("Digite seu primeiro nome: ");
+        printf("Digite o primeiro do nome do cliente (até 99 caracteres): ");
         scanf("%s", str);
         getchar();
         str[strlen(str)] = '\0';
         s = saveAutomaticSeat(t, str);
         
         if (s == NULL) {
-            printf("NÃ£o hÃ¡ assentos disponÃ­veis.\n");
-            return;
+            printf("Não há assentos disponíveis.\n");
+            free(str);
+            return; 
         } else {
-            printf("Sua reserva foi marcada para o assento %c%d!\n", s->row, s->number);
+            printf("A reserva do cliente %s foi marcada para o assento %c%d!\n", str, s->row, s->number);
             return;
         }
     }
@@ -185,26 +201,38 @@ void main_SaveMultipleSeatsThroughSystem(Theater t) {
     char opc;
     Seat **seats;
 
-    printf("VocÃª selecionou a opÃ§Ã£o 'Reservar assentos consecutivos pelo sistema'.\n");
-    printf("Digite seu nome: ");
+    printf("Você selecionou a opção 'Reservar assentos consecutivos pelo sistema'.\n");
+    printf("Digite o primeiro nome do cliente (até 99 caracteres): ");
+    getchar();
     scanf("%s", str);
     str[strlen(str)] = '\0';
     getchar();
     printf("Digite a quantidade de assentos a reservar: ");
+    getchar();
     scanf("%d", &x);
 
-    if (x > t.qtdColumns) {
-        printf("NÃ£o Ã© possÃ­vel reservar %d assentos consecutivos pois a fileira contÃ©m somente %d assentos. Deseja tentar novamente? (s/n) ");
+    if (x<1) {
+        printf("Número inválido! Deseja tentar novamente? (s/n) ");
         getchar();
         scanf("%c", &opc);
+        free(str);  
         if (opc == 's') { main_SaveMultipleSeatsThroughSystem(t); }
         return;
     }
+    if (x > t.qtdColumns) {
+        printf("Não é possível reservar %d assentos consecutivos pois a fileira contém somente %d assentos. Deseja tentar novamente? (s/n) ");
+        getchar();
+        scanf("%c", &opc);
+        free(str);  
+        if (opc == 's') { main_SaveMultipleSeatsThroughSystem(t); }
+        return;
+    }
+
     
     seats = saveAutomaticMultipleSeat(t, x, str);
 
     if (seats == NULL) {
-        printf("NÃ£o foi possÃ­vel reservar %d assentos de forma consecutiva.\n");
+        printf("Não foi possível reservar %d assentos de forma consecutiva.\n");
     }
     else {
         printf("Foram reservados os assentos");
@@ -227,17 +255,19 @@ void main_CancelMultipleReservations(Theater t) {
     int result;
     char opc;
 
-    printf("VocÃª escolheu a opÃ§Ã£o 'Cancelar reservas de uma pessoa.'\n");
-    printf("Digite o nome da pessoa que terÃ¡ as reservas excluÃ­das (atÃ© 99 caracteres): \n");
+    printf("Você escolheu a opção 'Cancelar reservas de uma pessoa.'\n");
+    printf("Digite o nome da pessoa que terá as reservas excluídas (até 99 caracteres): \n");
+    getchar();
     scanf("%s", str);
     str[strlen(str)] = '\0';
 
     result = cancelMultipleReservations(t, str);
 
     if (result == 0) {
-        printf("NÃ£o hÃ¡ nenhuma reserva para essa pessoa. Deseja tentar novamente? (s/n) ");
+        printf("Não há nenhuma reserva para essa pessoa. Deseja tentar novamente? (s/n) ");
         getchar();
-        scanf("%c", &opc);  
+        scanf("%c", &opc);
+        free(str);  
         if (opc == 's') { main_CancelMultipleReservations(t); }
         else { return; }
     }
@@ -251,13 +281,13 @@ Theater main_LoadState(Theater t){
     char file[50];
     char opc;
 
-    printf("VocÃª escolheu a opÃ§Ã£o 'Carregar Estado'.\n");
-    printf("Ao continuar o processo, a configuraÃ§Ã£o de assentos atual serÃ¡ descartada. Deseja continuar? (s/n) ");
+    printf("Você escolheu a opção 'Carregar Estado'.\n");
+    printf("Ao continuar o processo, a configuração de assentos atual será descartada. Deseja continuar? (s/n) ");
     getchar();
     scanf("%c", &opc);
 
     if(opc == 's'){
-        printf("Digite o nome do arquivo (atÃ© 50 caracteres): ");
+        printf("Digite o nome do arquivo (até 50 caracteres): ");
         scanf("%49s", file);
         strcat(file, ".txt ");
         printf("%s\n", file);
@@ -265,12 +295,12 @@ Theater main_LoadState(Theater t){
 
        t = loadState(file);
         if (t.seats == NULL) {
-            printf("NÃ£o foi possÃ­vel carregar o arquivo. Deseja tentar novamente? (s/n) ");
+            printf("Não foi possível carregar o arquivo. Deseja tentar novamente? (s/n) ");
             getchar();
             scanf("%c", &opc);
             if (opc == 's') { main_LoadState(t); }
             else {                                                          
-                printf("OperaÃ§Ã£o cancelada.\n");
+                printf("Operação cancelada.\n");
                 return;
             }
         }
@@ -288,8 +318,8 @@ void main_CancelAllReservations(Theater t) {
     char opc;
     int total = 0;
 
-    printf("VocÃª escolheu a opÃ§Ã£o 'Cancelar todas as reservas'.\n");
-    printf("A partir de agora todas as reservas nos assentos serÃ£o excluÃ­das. Deseja continuar? (s/n) ");
+    printf("Você escolheu a opção 'Cancelar todas as reservas'.\n");
+    printf("A partir de agora todas as reservas nos assentos serão excluídas. Deseja continuar? (s/n) ");
     getchar();
     scanf("%c", &opc);
 
@@ -302,24 +332,53 @@ void main_CancelAllReservations(Theater t) {
             printf("%d reservas foram canceladas.\n", total);
         }
     }
-    else { printf("OperaÃ§Ã£o cancelada.\n"); return; }
+    else { printf("Operação cancelada.\n"); return; }
 }
 
 void main_seeConsecutiveSeats(Theater t){
     int n;
     char opc;
-    printf("Qual Ã© o nÃºmero mÃ­nimo de assentos consecutivos que vocÃª deseja consultar? ");
-    scanf("%d\n", &n);
-    if(n == 0){
-        printf("VocÃª serÃ¡ redirecionado para o menu\n");
+    printf("Qual é o número mínimo de assentos consecutivos que você deseja consultar? ");
+    getchar();
+    scanf("%d", &n);
+    if (n == 0) {
+        printf("Você será redirecionado para o menu\n");
         return;
     }
-    else if(n < 0 || n > t.qtdColumns){
-        printf("Valor invÃ¡lido. Deseja tentar novamente? (s/n)\n");
+    else if (n < 0 || n > t.qtdColumns){
+        printf("Valor inválido. Deseja tentar novamente? (s/n)\n");
         getchar();
         scanf("%c\n", &opc);  
         if (opc == 's') { main_seeConsecutiveSeats(t); }
         else { return; }
-        }
+    }
     seeConsecutiveSeats(t, n);
+}
+
+void main_CheckSeat(Theater t) {
+    int r, c, result, validation;
+
+    printf("Você escolheu a opção 'Verificar Disponibilidade'.\n");
+    printf("Digite o número da fileira e do assento a ser consultado: ");
+    getchar();
+    scanf("%d %d", &r, &c);
+    
+    validation = validateParams(t, r, c);
+    while (validation == 0) {
+        printf("Entradas inválidas. Insira uma fileira e um número de assento válidos: ");
+        getchar();
+        scanf("%d %d", &r, &c);
+        validation = validateParams(t, r, c);
+    }
+
+    result = isSeatFree(t, r-1, c-1);
+
+    if (result == 1) { 
+        printf("O assento %c%d está disponível!\n", t.seats[r-1][c-1].row, t.seats[r-1][c-1].number);
+        return;
+    }
+    else {
+        printf("O assento %c%d não está disponível.\n", t.seats[r-1][c-1].row, t.seats[r-1][c-1].number); 
+        return;
+    }
 }
